@@ -4,22 +4,9 @@ from typing import Annotated, Optional, Text
 from bson import ObjectId
 from pydantic import BaseModel, BeforeValidator, ConfigDict, Field
 
+from app.models.tracking import Tracking
+
 PyObjectId = Annotated[str, BeforeValidator(str)]
-
-class History(BaseModel):
-    location: str
-    timestamp: datetime
-    status: str
-
-class UpdateTracking(BaseModel):
-    location: str
-    status: str
-
-class Tracking(BaseModel):
-    currentLocation: str
-    currentStatus: str
-    lastUpdate: datetime
-    history: list[History]
 
 class Receiver(BaseModel):
     name: str
